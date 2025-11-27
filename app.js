@@ -1,6 +1,7 @@
 import e from "express";
 
  const api = e();
+ api.use(e.json());
 
 api.get('/helloworld', (req, resp) => {
     resp.send('Hello World');
@@ -65,6 +66,19 @@ api.get('/mensagem/oi', (req, resp) =>{
     let pessoa = req.query.nome ?? 'usuario';
 
     resp.send("Olá, tudo bem " + pessoa)
+})
+
+
+
+
+api.post('/media', (req, resp) =>{
+    let n1 = req.body.nota1;
+    let n2 = req.body.nota2;
+    let n3 = req.body.nota3;
+
+    let media = (n1 + n2 + n3) / 3;
+
+    resp.send(media)
 })
 
  api.listen(5010, () => console.log("API subiu com sucesso!"));
